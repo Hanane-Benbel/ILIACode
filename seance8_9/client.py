@@ -23,4 +23,19 @@ def canonicaliser(texte):
 
 
 def demander(texte, type_demande, modele="moteur", n_max=400):
-    raise NotImplementedError("demander est à écrire à l'étape 1.3")
+    reglage = lire_reglages()[type_demande]
+    corps = {"model": modele,
+        "messages": [{"role": "user", "content": canonicaliser(texte)}],
+        "max_tokens": n_max,
+        "temperature": reglage["temperature"],
+        "top_p": reglage["p_noyau"],
+        "seed": 0,
+        "stop_token_ids": [FIN]}
+    requete = urllib.request.Request(
+        ADRESSE + "/v1/chat/completions", data=json.dumps(corps).encode("utf-8"),#l'adresse ces le distinataire + le chemin de l'api avec chat et si je l'ilimine je dois ajouter "prompt": texte , texte a envoyer
+        headers={"Content-Type": "application/json",
+            "Authorization": "Bearer " + os.environ["CLE_ILIACODE"]})
+    with urllib.request.urlopen(requete, timeout=300) as reponse:#300 secondes de timeout pour attendre si la requete prend du temps c'est a dire 5 minutes
+        choix = json.loads(reponse.read())["choices"][0] #une fois que la reponse est recu je le transforme en json et je prend le premier element de la liste des choix
+    return choix["message"]["content"], choix["finish_reason"] == "stop" #c'est a dire que si le moteur a fini de generer la reponse ou pas, si c'est stop c'est qu'il a fini sinon c'est qu'il a ete interrompu par le temps ou autre chose
+    
