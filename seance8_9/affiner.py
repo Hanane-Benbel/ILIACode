@@ -19,7 +19,7 @@ for p in entraines:
     p.data = p.data.float()
 print("paramètres entraînés", sum(p.numel() for p in entraines))
 
-
+#cette fonction contient  
 def exemple(paire):
     demande = tokeniseur.apply_chat_template(
         [{"role": "user", "content": paire["demande"]}], tokenize=False, add_generation_prompt=True)
@@ -32,7 +32,7 @@ def exemple(paire):
 paires = json.load(open("paires.json", encoding="utf-8"))
 adam = torch.optim.AdamW(entraines, lr=2e-4)
 random.seed(0)
-for epoque in range(2):
+for epoque in range(6):
     random.shuffle(paires)
     pertes = []
     for paire in paires:
@@ -41,10 +41,11 @@ for epoque in range(2):
         perte.backward()
         adam.step()
         adam.zero_grad()
-        pertes.append(perte.item())
-    print(f"époque {epoque + 1}, perte moyenne {sum(pertes) / len(pertes):.3f}")
+        pertes.append(perte.item())#TONSEUR avec un seul element donc je recupere la valeur avec item() et je l'ajoute a la liste des pertes pour calculer la perte moyenne a la fin de l'epoque
+    print(f"époque {epoque + 1}, perte moyenne {sum(pertes) / len(pertes):.3f}")#on a 20 paires dans chaque époque donc on va calculer la perte moyenne sur les 20 paires et l'afficher a la fin de chaque époque
 
-for p in entraines:
+for p in entraines:#tonseur par tonseur je convertis les poids en float16 pour economiser de la memoire et je sauvegarde le modele dans le dossier SORTIE
     p.data = p.data.to(torch.float16)
 moteur.save_pretrained(SORTIE)
 print("adaptateur enregistré dans le dossier", SORTIE)
+#donc les matrice A et B doivent etre crier

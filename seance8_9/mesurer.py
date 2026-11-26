@@ -55,11 +55,11 @@ def surprises(modele, texte):
     return [-list(p.values())[0]["logprob"] / math.log(2) for p in probas]
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":#j'ai ici 12 travailleurs qui vont executer la fonction demander en parallele pour chaque demande du jeu de test
     modele = sys.argv[1]
     jeu = json.load(open("jeu_test.json", encoding="utf-8"))
     with ThreadPoolExecutor(len(jeu)) as lot:
-        sorties = list(lot.map(lambda d: demander(d["demande"], d["type"], modele), jeu))
+        sorties = list(lot.map(lambda d: demander(d["demande"], d["type"], modele), jeu))#ça veux dire que pour chaque demande du jeu de test je vais executer la fonction demander en parallele et je vais recuperer les sorties dans une liste
 
     for d, (texte, arrete) in zip(jeu, sorties):
         print(f"--- {d['type']}, {'arrêt seul' if arrete else 'SANS ARRÊT'}\n{d['demande'][:70]}\n{texte[:300]}\n")
@@ -68,11 +68,11 @@ if __name__ == "__main__":
     juges = [(d, t) for d, (t, _) in zip(jeu, sorties) if d["type"] != "explication"]
     justes = sum(juste(d, t) for d, t in juges)
     maisons = sum(arrete and maison(d, t) for d, (t, arrete) in zip(jeu, sorties))
-    bits = [b for f in sorted(Path("mis_de_cote").glob("*.py")) for b in surprises(modele, f.read_text(encoding="utf-8"))]
-    L = sum(bits) / len(bits)
+    bits = [b for f in sorted(Path("mis_de_cote").glob("*.py")) for b in surprises(modele, f.read_text(encoding="utf-8"))]#ça veux dire que je vais recuperer tous les fichiers .py dans le dossier mis_de_cote et pour chaque fichier je vais calculer les surprises et je vais mettre toutes les surprises dans une liste
+    L = sum(bits) / len(bits)#ça veux dire que je vais calculer la perplexité du modèle sur les tokens du jeu de test en faisant la moyenne des surprises
 
     print(f"moteur {modele}")
-    print(f"  taux de réponses  {reponses}/{len(jeu)} = {reponses / len(jeu):.2f}")
-    print(f"  pass@1            {justes}/{len(juges)} = {justes / len(juges):.2f}")
-    print(f"  manière maison    {maisons}/{len(jeu)} = {maisons / len(jeu):.2f}")
-    print(f"  perplexité        2^{L:.3f} = {2 ** L:.2f}, sur {len(bits)} tokens")
+    print(f"  taux de réponses  {reponses}/{len(jeu)} = {reponses / len(jeu):.2f}")#ça veux dire que je vais afficher le taux de réponses correctes sur le nombre total de demandes dans le jeu de test
+    print(f"  pass@1            {justes}/{len(juges)} = {justes / len(juges):.2f}")#ça veux dire que je vais afficher le taux de réponses correctes sur le nombre total de demandes dans le jeu de test qui ne sont pas des explications
+    print(f"  manière maison    {maisons}/{len(jeu)} = {maisons / len(jeu):.2f}")#ça veux dire que je vais afficher le taux de réponses correctes sur le nombre total de demandes dans le jeu de test qui sont des explications
+    print(f"  perplexité        2^{L:.3f} = {2 ** L:.2f}, sur {len(bits)} tokens")#ça veux dire que je vais afficher la perplexité du modèle sur les tokens du jeu de test
