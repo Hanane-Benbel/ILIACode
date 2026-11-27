@@ -8,9 +8,8 @@ ADRESSE = "http://127.0.0.1:8000"
 FIN = 151645
 LEXIQUE = set(Path(__file__).with_name("lexique.txt").read_text(encoding="utf-8").split())
 
-def lire_reglages(chemin=None):
-    if chemin is None:
-        chemin = Path(__file__).resolve().parent.parent / "seance7" / "reglages.json"
+
+def lire_reglages(chemin="/content/iliacode/seance8_9/reglages.json"):
     with open(chemin, encoding="utf-8") as fichier:
         return json.load(fichier)
 
