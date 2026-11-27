@@ -998,5 +998,505 @@
   "type": "explication",
   "demande": "Explique ce que fait date_francaise.\n```python\ndef date_francaise(date_iso):\n    annee, mois, jour = date_iso.split(\"-\")\n    return f\"{jour}/{mois}/{annee}\"\n```",
   "reponse": "La fonction découpe la date sur les tirets, puis la réécrit dans l'ordre jour, mois, année, séparés par des barres obliques."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction est_pair(nombre) qui renvoie True si le nombre est pair, et False sinon.",
+  "reponse": "```python\ndef est_pair(nombre):\n    return nombre % 2 == 0\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de est_pair.\n```python\ndef est_pair(nombre):\n    return nombre % 2 == 0\n```",
+  "reponse": "```python\ndef test_nombres_pairs_et_impairs():\n    assert est_pair(0)\n    assert est_pair(18)\n    assert not est_pair(7)\n    assert est_pair(-4)\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait est_pair.\n```python\ndef est_pair(nombre):\n    return nombre % 2 == 0\n```",
+  "reponse": "La fonction renvoie True lorsque le reste de la division du nombre par 2 vaut z?ro. Cela fonctionne aussi pour z?ro et les nombres n?gatifs."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction convertir_minutes(minutes) qui renvoie un tuple contenant le nombre d?heures enti?res et les minutes restantes.",
+  "reponse": "```python\ndef convertir_minutes(minutes):\n    return minutes // 60, minutes % 60\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de convertir_minutes.\n```python\ndef convertir_minutes(minutes):\n    return minutes // 60, minutes % 60\n```",
+  "reponse": "```python\ndef test_conversion_minutes():\n    assert convertir_minutes(125) == (2, 5)\n    assert convertir_minutes(60) == (1, 0)\n    assert convertir_minutes(0) == (0, 0)\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait convertir_minutes.\n```python\ndef convertir_minutes(minutes):\n    return minutes // 60, minutes % 60\n```",
+  "reponse": "La fonction divise les minutes par 60. Elle renvoie le quotient entier comme nombre d?heures et le reste comme minutes restantes."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction compter_voyelles(texte) qui compte les voyelles a, e, i, o, u et y sans tenir compte des majuscules.",
+  "reponse": "```python\ndef compter_voyelles(texte):\n    voyelles = \"aeiouy\"\n    return sum(1 for lettre in texte.lower() if lettre in voyelles)\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de compter_voyelles.\n```python\ndef compter_voyelles(texte):\n    voyelles = \"aeiouy\"\n    return sum(1 for lettre in texte.lower() if lettre in voyelles)\n```",
+  "reponse": "```python\ndef test_compter_voyelles():\n    assert compter_voyelles(\"Bonjour\") == 3\n    assert compter_voyelles(\"RYTHME\") == 1\n    assert compter_voyelles(\"123 !\") == 0\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait compter_voyelles.\n```python\ndef compter_voyelles(texte):\n    voyelles = \"aeiouy\"\n    return sum(1 for lettre in texte.lower() if lettre in voyelles)\n```",
+  "reponse": "La fonction met le texte en minuscules, puis compte les caract?res qui appartiennent ? la cha?ne des voyelles indiqu?es."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction inverser_mots(texte) qui renvoie les mots dans l?ordre inverse, s?par?s par une espace.",
+  "reponse": "```python\ndef inverser_mots(texte):\n    return \" \".join(texte.split()[::-1])\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de inverser_mots.\n```python\ndef inverser_mots(texte):\n    return \" \".join(texte.split()[::-1])\n```",
+  "reponse": "```python\ndef test_inverser_mots():\n    assert inverser_mots(\"bonjour tout le monde\") == \"monde le tout bonjour\"\n    assert inverser_mots(\"\") == \"\"\n    assert inverser_mots(\"  salut   toi \") == \"toi salut\"\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait inverser_mots.\n```python\ndef inverser_mots(texte):\n    return \" \".join(texte.split()[::-1])\n```",
+  "reponse": "La fonction d?coupe le texte en mots, inverse leur ordre, puis les rassemble avec une seule espace."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction somme_chiffres(nombre) qui renvoie la somme des chiffres de la valeur absolue du nombre entier.",
+  "reponse": "```python\ndef somme_chiffres(nombre):\n    return sum(int(chiffre) for chiffre in str(abs(nombre)))\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de somme_chiffres.\n```python\ndef somme_chiffres(nombre):\n    return sum(int(chiffre) for chiffre in str(abs(nombre)))\n```",
+  "reponse": "```python\ndef test_somme_chiffres():\n    assert somme_chiffres(583) == 16\n    assert somme_chiffres(-204) == 6\n    assert somme_chiffres(0) == 0\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait somme_chiffres.\n```python\ndef somme_chiffres(nombre):\n    return sum(int(chiffre) for chiffre in str(abs(nombre)))\n```",
+  "reponse": "La fonction convertit la valeur absolue du nombre en cha?ne, transforme chaque chiffre en entier et les additionne."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction est_palindrome(texte) qui renvoie True si le texte est identique lorsqu?on le lit ? l?envers, en ignorant les espaces et la casse.",
+  "reponse": "```python\ndef est_palindrome(texte):\n    normalise = \"\".join(texte.lower().split())\n    return normalise == normalise[::-1]\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de est_palindrome.\n```python\ndef est_palindrome(texte):\n    normalise = \"\".join(texte.lower().split())\n    return normalise == normalise[::-1]\n```",
+  "reponse": "```python\ndef test_est_palindrome():\n    assert est_palindrome(\"Radar\")\n    assert est_palindrome(\"Esope reste ici et se repose\")\n    assert not est_palindrome(\"bonjour\")\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait est_palindrome.\n```python\ndef est_palindrome(texte):\n    normalise = \"\".join(texte.lower().split())\n    return normalise == normalise[::-1]\n```",
+  "reponse": "La fonction met le texte en minuscules et retire les espaces, puis compare la cha?ne obtenue ? son inverse."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction filtrer_pairs(nombres) qui renvoie une nouvelle liste contenant seulement les nombres pairs, dans leur ordre d?origine.",
+  "reponse": "```python\ndef filtrer_pairs(nombres):\n    return [nombre for nombre in nombres if nombre % 2 == 0]\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de filtrer_pairs.\n```python\ndef filtrer_pairs(nombres):\n    return [nombre for nombre in nombres if nombre % 2 == 0]\n```",
+  "reponse": "```python\ndef test_filtrer_pairs():\n    assert filtrer_pairs([3, 8, 2, 5, 0]) == [8, 2, 0]\n    assert filtrer_pairs([1, 3]) == []\n    assert filtrer_pairs([]) == []\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait filtrer_pairs.\n```python\ndef filtrer_pairs(nombres):\n    return [nombre for nombre in nombres if nombre % 2 == 0]\n```",
+  "reponse": "La fonction parcourt la liste et construit une nouvelle liste avec les nombres dont le reste modulo 2 est nul."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction fusionner_dicts(premier, second) qui renvoie un nouveau dictionnaire contenant les cl?s des deux dictionnaires; en cas de cl? commune, la valeur du second est gard?e.",
+  "reponse": "```python\ndef fusionner_dicts(premier, second):\n    return {**premier, **second}\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de fusionner_dicts.\n```python\ndef fusionner_dicts(premier, second):\n    return {**premier, **second}\n```",
+  "reponse": "```python\ndef test_fusionner_dicts():\n    assert fusionner_dicts({\"a\": 1}, {\"b\": 2}) == {\"a\": 1, \"b\": 2}\n    assert fusionner_dicts({\"a\": 1}, {\"a\": 9}) == {\"a\": 9}\n    premier = {\"x\": 3}\n    fusionner_dicts(premier, {})\n    assert premier == {\"x\": 3}\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait fusionner_dicts.\n```python\ndef fusionner_dicts(premier, second):\n    return {**premier, **second}\n```",
+  "reponse": "La fonction cr?e un nouveau dictionnaire avec les entr?es du premier puis du second. Une cl? r?p?t?e prend donc la valeur du second."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction compter_occurrences(elements) qui renvoie un dictionnaire qui associe ? chaque ?l?ment son nombre d?apparitions.",
+  "reponse": "```python\ndef compter_occurrences(elements):\n    resultat = {}\n    for element in elements:\n        resultat[element] = resultat.get(element, 0) + 1\n    return resultat\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de compter_occurrences.\n```python\ndef compter_occurrences(elements):\n    resultat = {}\n    for element in elements:\n        resultat[element] = resultat.get(element, 0) + 1\n    return resultat\n```",
+  "reponse": "```python\ndef test_compter_occurrences():\n    assert compter_occurrences([\"a\", \"b\", \"a\"]) == {\"a\": 2, \"b\": 1}\n    assert compter_occurrences([]) == {}\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait compter_occurrences.\n```python\ndef compter_occurrences(elements):\n    resultat = {}\n    for element in elements:\n        resultat[element] = resultat.get(element, 0) + 1\n    return resultat\n```",
+  "reponse": "La fonction parcourt les ?l?ments et augmente leur compteur dans un dictionnaire. Un ?l?ment vu pour la premi?re fois re?oit le compteur 1."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction moyenne(nombres) qui renvoie la moyenne des nombres, ou 0 si la liste est vide.",
+  "reponse": "```python\ndef moyenne(nombres):\n    return sum(nombres) / len(nombres) if nombres else 0\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de moyenne.\n```python\ndef moyenne(nombres):\n    return sum(nombres) / len(nombres) if nombres else 0\n```",
+  "reponse": "```python\ndef test_moyenne():\n    assert moyenne([2, 4, 9]) == 5\n    assert moyenne([7]) == 7\n    assert moyenne([]) == 0\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait moyenne.\n```python\ndef moyenne(nombres):\n    return sum(nombres) / len(nombres) if nombres else 0\n```",
+  "reponse": "La fonction additionne les valeurs et divise leur somme par leur nombre. Pour une liste vide, elle renvoie 0 afin d??viter une division par z?ro."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction premier_non_vide(textes) qui renvoie le premier texte qui contient autre chose que des espaces, sans le modifier, ou None si aucun ne convient.",
+  "reponse": "```python\ndef premier_non_vide(textes):\n    for texte in textes:\n        if texte.strip():\n            return texte\n    return None\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de premier_non_vide.\n```python\ndef premier_non_vide(textes):\n    for texte in textes:\n        if texte.strip():\n            return texte\n    return None\n```",
+  "reponse": "```python\ndef test_premier_non_vide():\n    assert premier_non_vide([\"  \", \"salut\", \"apr?s\"]) == \"salut\"\n    assert premier_non_vide([\"\", \"   \"]) is None\n    assert premier_non_vide([]) is None\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait premier_non_vide.\n```python\ndef premier_non_vide(textes):\n    for texte in textes:\n        if texte.strip():\n            return texte\n    return None\n```",
+  "reponse": "La fonction cherche le premier texte dont la version sans espaces n?est pas vide. Elle renvoie le texte original, ou None si elle n?en trouve pas."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction minimum_ou_aucun(nombres) qui renvoie le plus petit nombre de la liste, ou None si la liste est vide.",
+  "reponse": "```python\ndef minimum_ou_aucun(nombres):\n    return min(nombres) if nombres else None\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de minimum_ou_aucun.\n```python\ndef minimum_ou_aucun(nombres):\n    return min(nombres) if nombres else None\n```",
+  "reponse": "```python\ndef test_minimum_ou_aucun():\n    assert minimum_ou_aucun([5, -2, 8]) == -2\n    assert minimum_ou_aucun([4]) == 4\n    assert minimum_ou_aucun([]) is None\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait minimum_ou_aucun.\n```python\ndef minimum_ou_aucun(nombres):\n    return min(nombres) if nombres else None\n```",
+  "reponse": "La fonction renvoie le minimum de la liste lorsqu?elle contient des valeurs. Une liste vide donne None."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction appliquer_reduction(prix, pourcentage) qui renvoie le prix apr?s une r?duction exprim?e en pourcentage, sans arrondir le r?sultat.",
+  "reponse": "```python\ndef appliquer_reduction(prix, pourcentage):\n    return prix * (1 - pourcentage / 100)\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de appliquer_reduction.\n```python\ndef appliquer_reduction(prix, pourcentage):\n    return prix * (1 - pourcentage / 100)\n```",
+  "reponse": "```python\ndef test_appliquer_reduction():\n    assert appliquer_reduction(100, 20) == 80\n    assert appliquer_reduction(50, 0) == 50\n    assert appliquer_reduction(80, 25) == 60\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait appliquer_reduction.\n```python\ndef appliquer_reduction(prix, pourcentage):\n    return prix * (1 - pourcentage / 100)\n```",
+  "reponse": "La fonction calcule la part du prix qui reste apr?s la r?duction et la multiplie par le prix initial."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction formater_prenom(prenom) qui retire les espaces au d?but et ? la fin, puis met la premi?re lettre en majuscule et les autres en minuscules.",
+  "reponse": "```python\ndef formater_prenom(prenom):\n    return prenom.strip().capitalize()\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de formater_prenom.\n```python\ndef formater_prenom(prenom):\n    return prenom.strip().capitalize()\n```",
+  "reponse": "```python\ndef test_formater_prenom():\n    assert formater_prenom(\"  sARA \") == \"Sara\"\n    assert formater_prenom(\"ali\") == \"Ali\"\n    assert formater_prenom(\"   \") == \"\"\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait formater_prenom.\n```python\ndef formater_prenom(prenom):\n    return prenom.strip().capitalize()\n```",
+  "reponse": "La fonction retire les espaces ext?rieurs, puis applique capitalize pour mettre la premi?re lettre en majuscule et le reste en minuscules."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction annee_bissextile(annee) qui renvoie True si l?ann?e est bissextile selon les r?gles du calendrier gr?gorien.",
+  "reponse": "```python\ndef annee_bissextile(annee):\n    return annee % 400 == 0 or (annee % 4 == 0 and annee % 100 != 0)\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de annee_bissextile.\n```python\ndef annee_bissextile(annee):\n    return annee % 400 == 0 or (annee % 4 == 0 and annee % 100 != 0)\n```",
+  "reponse": "```python\ndef test_annee_bissextile():\n    assert annee_bissextile(2024)\n    assert not annee_bissextile(2023)\n    assert not annee_bissextile(1900)\n    assert annee_bissextile(2000)\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait annee_bissextile.\n```python\ndef annee_bissextile(annee):\n    return annee % 400 == 0 or (annee % 4 == 0 and annee % 100 != 0)\n```",
+  "reponse": "Une ann?e divisible par 400 est bissextile. Sinon, elle doit ?tre divisible par 4 sans ?tre divisible par 100."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction secondes_en_hms(secondes) qui renvoie un tuple (heures, minutes, secondes restantes) pour un nombre entier de secondes non n?gatif.",
+  "reponse": "```python\ndef secondes_en_hms(secondes):\n    heures = secondes // 3600\n    minutes = (secondes % 3600) // 60\n    reste = secondes % 60\n    return heures, minutes, reste\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de secondes_en_hms.\n```python\ndef secondes_en_hms(secondes):\n    heures = secondes // 3600\n    minutes = (secondes % 3600) // 60\n    reste = secondes % 60\n    return heures, minutes, reste\n```",
+  "reponse": "```python\ndef test_secondes_en_hms():\n    assert secondes_en_hms(3671) == (1, 1, 11)\n    assert secondes_en_hms(59) == (0, 0, 59)\n    assert secondes_en_hms(3600) == (1, 0, 0)\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait secondes_en_hms.\n```python\ndef secondes_en_hms(secondes):\n    heures = secondes // 3600\n    minutes = (secondes % 3600) // 60\n    reste = secondes % 60\n    return heures, minutes, reste\n```",
+  "reponse": "La fonction extrait d?abord les heures enti?res, puis les minutes et les secondes restantes avec les divisions et restes par 3600 et 60."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction valeurs_communes(premiere, seconde) qui renvoie les ?l?ments de la premi?re liste qui figurent aussi dans la seconde, en conservant leur ordre et leurs r?p?titions.",
+  "reponse": "```python\ndef valeurs_communes(premiere, seconde):\n    return [valeur for valeur in premiere if valeur in seconde]\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de valeurs_communes.\n```python\ndef valeurs_communes(premiere, seconde):\n    return [valeur for valeur in premiere if valeur in seconde]\n```",
+  "reponse": "```python\ndef test_valeurs_communes():\n    assert valeurs_communes([1, 2, 2, 3], [2, 3]) == [2, 2, 3]\n    assert valeurs_communes([1], [4]) == []\n    assert valeurs_communes([], [1]) == []\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait valeurs_communes.\n```python\ndef valeurs_communes(premiere, seconde):\n    return [valeur for valeur in premiere if valeur in seconde]\n```",
+  "reponse": "La fonction garde chaque ?l?ment de la premi?re liste s?il est pr?sent dans la seconde. L?ordre et les r?p?titions de la premi?re liste sont conserv?s."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction sans_doublons_ordre(elements) qui renvoie une liste sans doublons en gardant la premi?re occurrence de chaque ?l?ment.",
+  "reponse": "```python\ndef sans_doublons_ordre(elements):\n    return list(dict.fromkeys(elements))\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de sans_doublons_ordre.\n```python\ndef sans_doublons_ordre(elements):\n    return list(dict.fromkeys(elements))\n```",
+  "reponse": "```python\ndef test_sans_doublons_ordre():\n    assert sans_doublons_ordre([\"a\", \"b\", \"a\", \"c\", \"b\"]) == [\"a\", \"b\", \"c\"]\n    assert sans_doublons_ordre([]) == []\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait sans_doublons_ordre.\n```python\ndef sans_doublons_ordre(elements):\n    return list(dict.fromkeys(elements))\n```",
+  "reponse": "La fonction utilise les cl?s d?un dictionnaire, qui ne gardent qu?une occurrence de chaque ?l?ment dans l?ordre d?insertion, puis les convertit en liste."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction total_panier(articles) qui calcule le total d?une liste d?articles, chaque article ?tant un dictionnaire avec les cl?s \"prix\" et \"quantite\".",
+  "reponse": "```python\ndef total_panier(articles):\n    return sum(article[\"prix\"] * article[\"quantite\"] for article in articles)\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de total_panier.\n```python\ndef total_panier(articles):\n    return sum(article[\"prix\"] * article[\"quantite\"] for article in articles)\n```",
+  "reponse": "```python\ndef test_total_panier():\n    assert total_panier([]) == 0\n    assert total_panier([{\"prix\": 3, \"quantite\": 2}, {\"prix\": 5, \"quantite\": 1}]) == 11\n    assert total_panier([{\"prix\": 0, \"quantite\": 4}]) == 0\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait total_panier.\n```python\ndef total_panier(articles):\n    return sum(article[\"prix\"] * article[\"quantite\"] for article in articles)\n```",
+  "reponse": "La fonction multiplie le prix par la quantit? de chaque article et additionne ces sous-totaux. Un panier vide vaut 0."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction decouper_liste(elements, taille) qui renvoie une liste de sous-listes de la taille indiqu?e; la derni?re peut ?tre plus courte.",
+  "reponse": "```python\ndef decouper_liste(elements, taille):\n    return [elements[i:i + taille] for i in range(0, len(elements), taille)]\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de decouper_liste.\n```python\ndef decouper_liste(elements, taille):\n    return [elements[i:i + taille] for i in range(0, len(elements), taille)]\n```",
+  "reponse": "```python\ndef test_decouper_liste():\n    assert decouper_liste([1, 2, 3, 4, 5], 2) == [[1, 2], [3, 4], [5]]\n    assert decouper_liste([], 3) == []\n    assert decouper_liste([7, 8], 5) == [[7, 8]]\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait decouper_liste.\n```python\ndef decouper_liste(elements, taille):\n    return [elements[i:i + taille] for i in range(0, len(elements), taille)]\n```",
+  "reponse": "La fonction avance dans la liste par pas de la taille demand?e et extrait une tranche ? chaque ?tape. La derni?re tranche peut ?tre incompl?te."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction celsius_en_fahrenheit(celsius) qui convertit une temp?rature Celsius en Fahrenheit avec la formule 9/5 ? C + 32.",
+  "reponse": "```python\ndef celsius_en_fahrenheit(celsius):\n    return celsius * 9 / 5 + 32\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de celsius_en_fahrenheit.\n```python\ndef celsius_en_fahrenheit(celsius):\n    return celsius * 9 / 5 + 32\n```",
+  "reponse": "```python\ndef test_celsius_en_fahrenheit():\n    assert celsius_en_fahrenheit(0) == 32\n    assert celsius_en_fahrenheit(100) == 212\n    assert celsius_en_fahrenheit(-40) == -40\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait celsius_en_fahrenheit.\n```python\ndef celsius_en_fahrenheit(celsius):\n    return celsius * 9 / 5 + 32\n```",
+  "reponse": "La fonction applique la formule de conversion Celsius vers Fahrenheit."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction prix_avec_tva(prix, taux) qui renvoie le prix augment? d?un taux de TVA exprim? en pourcentage.",
+  "reponse": "```python\ndef prix_avec_tva(prix, taux):\n    return prix * (1 + taux / 100)\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de prix_avec_tva.\n```python\ndef prix_avec_tva(prix, taux):\n    return prix * (1 + taux / 100)\n```",
+  "reponse": "```python\ndef test_prix_avec_tva():\n    assert prix_avec_tva(100, 20) == 120\n    assert prix_avec_tva(50, 0) == 50\n    assert prix_avec_tva(80, 10) == 88\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait prix_avec_tva.\n```python\ndef prix_avec_tva(prix, taux):\n    return prix * (1 + taux / 100)\n```",
+  "reponse": "La fonction ajoute au prix la part correspondant au taux de TVA."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction est_anagramme(premier, second) qui renvoie True si les deux textes contiennent les m?mes lettres, sans tenir compte des espaces ni des majuscules.",
+  "reponse": "```python\ndef est_anagramme(premier, second):\n    a = sorted(premier.replace(\" \", \"\").lower())\n    b = sorted(second.replace(\" \", \"\").lower())\n    return a == b\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de est_anagramme.\n```python\ndef est_anagramme(premier, second):\n    a = sorted(premier.replace(\" \", \"\").lower())\n    b = sorted(second.replace(\" \", \"\").lower())\n    return a == b\n```",
+  "reponse": "```python\ndef test_est_anagramme():\n    assert est_anagramme(\"Chien\", \"Niche\")\n    assert est_anagramme(\"a b c\", \"CBA\")\n    assert not est_anagramme(\"chat\", \"chien\")\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait est_anagramme.\n```python\ndef est_anagramme(premier, second):\n    a = sorted(premier.replace(\" \", \"\").lower())\n    b = sorted(second.replace(\" \", \"\").lower())\n    return a == b\n```",
+  "reponse": "La fonction retire les espaces, met les textes en minuscules, trie leurs lettres puis compare les r?sultats."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction decaler_liste(elements, decalage) qui effectue une rotation vers la gauche du nombre de positions indiqu?; une liste vide reste vide.",
+  "reponse": "```python\ndef decaler_liste(elements, decalage):\n    if not elements:\n        return []\n    decalage %= len(elements)\n    return elements[decalage:] + elements[:decalage]\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de decaler_liste.\n```python\ndef decaler_liste(elements, decalage):\n    if not elements:\n        return []\n    decalage %= len(elements)\n    return elements[decalage:] + elements[:decalage]\n```",
+  "reponse": "```python\ndef test_decaler_liste():\n    assert decaler_liste([1, 2, 3, 4], 1) == [2, 3, 4, 1]\n    assert decaler_liste([1, 2, 3], 4) == [2, 3, 1]\n    assert decaler_liste([], 2) == []\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait decaler_liste.\n```python\ndef decaler_liste(elements, decalage):\n    if not elements:\n        return []\n    decalage %= len(elements)\n    return elements[decalage:] + elements[:decalage]\n```",
+  "reponse": "La fonction r?duit le d?calage ? la longueur de la liste et place les premiers ?l?ments ? la fin."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction extraire_extensions(noms) qui renvoie les extensions des fichiers en minuscules, sans le point; un nom sans extension donne une cha?ne vide.",
+  "reponse": "```python\ndef extraire_extensions(noms):\n    return [nom.rsplit(\".\", 1)[1].lower() if \".\" in nom else \"\" for nom in noms]\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de extraire_extensions.\n```python\ndef extraire_extensions(noms):\n    return [nom.rsplit(\".\", 1)[1].lower() if \".\" in nom else \"\" for nom in noms]\n```",
+  "reponse": "```python\ndef test_extraire_extensions():\n    assert extraire_extensions([\"photo.PNG\", \"notes.txt\", \"README\"]) == [\"png\", \"txt\", \"\"]\n    assert extraire_extensions([]) == []\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait extraire_extensions.\n```python\ndef extraire_extensions(noms):\n    return [nom.rsplit(\".\", 1)[1].lower() if \".\" in nom else \"\" for nom in noms]\n```",
+  "reponse": "La fonction extrait la partie apr?s le dernier point et la met en minuscules. Sans point, elle renvoie une cha?ne vide."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction est_multiple(nombre, diviseur) qui renvoie True si nombre est divisible par diviseur; si le diviseur vaut z?ro, renvoie False.",
+  "reponse": "```python\ndef est_multiple(nombre, diviseur):\n    return diviseur != 0 and nombre % diviseur == 0\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de est_multiple.\n```python\ndef est_multiple(nombre, diviseur):\n    return diviseur != 0 and nombre % diviseur == 0\n```",
+  "reponse": "```python\ndef test_est_multiple():\n    assert est_multiple(12, 3)\n    assert not est_multiple(10, 3)\n    assert not est_multiple(5, 0)\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait est_multiple.\n```python\ndef est_multiple(nombre, diviseur):\n    return diviseur != 0 and nombre % diviseur == 0\n```",
+  "reponse": "La fonction v?rifie que le diviseur est non nul et que le reste de la division vaut z?ro."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction premier_index(elements, cible) qui renvoie l?indice de la premi?re occurrence de la cible, ou None si elle est absente.",
+  "reponse": "```python\ndef premier_index(elements, cible):\n    try:\n        return elements.index(cible)\n    except ValueError:\n        return None\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de premier_index.\n```python\ndef premier_index(elements, cible):\n    try:\n        return elements.index(cible)\n    except ValueError:\n        return None\n```",
+  "reponse": "```python\ndef test_premier_index():\n    assert premier_index([\"a\", \"b\", \"a\"], \"a\") == 0\n    assert premier_index([4, 8], 8) == 1\n    assert premier_index([1, 2], 3) is None\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait premier_index.\n```python\ndef premier_index(elements, cible):\n    try:\n        return elements.index(cible)\n    except ValueError:\n        return None\n```",
+  "reponse": "La fonction cherche la premi?re occurrence avec index. Si la valeur manque, elle intercepte ValueError et renvoie None."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction normaliser_espaces(texte) qui remplace les suites d?espaces, tabulations ou retours ? la ligne par une espace et retire les espaces ext?rieurs.",
+  "reponse": "```python\ndef normaliser_espaces(texte):\n    return \" \".join(texte.split())\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de normaliser_espaces.\n```python\ndef normaliser_espaces(texte):\n    return \" \".join(texte.split())\n```",
+  "reponse": "```python\ndef test_normaliser_espaces():\n    assert normaliser_espaces(\"  bonjour   tout\\nle monde \") == \"bonjour tout le monde\"\n    assert normaliser_espaces(\"\") == \"\"\n    assert normaliser_espaces(\"   \") == \"\"\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait normaliser_espaces.\n```python\ndef normaliser_espaces(texte):\n    return \" \".join(texte.split())\n```",
+  "reponse": "La fonction s?pare les mots sur les blancs puis les rassemble avec une seule espace."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction compter_majuscules(texte) qui compte les lettres majuscules dans le texte.",
+  "reponse": "```python\ndef compter_majuscules(texte):\n    return sum(1 for caractere in texte if caractere.isupper())\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de compter_majuscules.\n```python\ndef compter_majuscules(texte):\n    return sum(1 for caractere in texte if caractere.isupper())\n```",
+  "reponse": "```python\ndef test_compter_majuscules():\n    assert compter_majuscules(\"Bonjour PARIS\") == 6\n    assert compter_majuscules(\"123 !\") == 0\n    assert compter_majuscules(\"\") == 0\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait compter_majuscules.\n```python\ndef compter_majuscules(texte):\n    return sum(1 for caractere in texte if caractere.isupper())\n```",
+  "reponse": "La fonction parcourt les caract?res et compte ceux pour lesquels isupper renvoie True."
+ },
+ {
+  "type": "fonction",
+  "demande": "?cris la fonction generer_table(nombre, limite) qui renvoie les produits de nombre par les entiers de 1 ? limite inclus; si limite est inf?rieur ? 1, renvoie une liste vide.",
+  "reponse": "```python\ndef generer_table(nombre, limite):\n    return [nombre * i for i in range(1, limite + 1)]\n```"
+ },
+ {
+  "type": "tests",
+  "demande": "?cris les tests de generer_table.\n```python\ndef generer_table(nombre, limite):\n    return [nombre * i for i in range(1, limite + 1)]\n```",
+  "reponse": "```python\ndef test_generer_table():\n    assert generer_table(3, 4) == [3, 6, 9, 12]\n    assert generer_table(5, 1) == [5]\n    assert generer_table(2, 0) == []\n```"
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait generer_table.\n```python\ndef generer_table(nombre, limite):\n    return [nombre * i for i in range(1, limite + 1)]\n```",
+  "reponse": "La fonction multiplie le nombre par chaque entier de 1 ? la limite et rassemble les r?sultats dans une liste."
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait maximum_deux(a, b).\n```python\ndef maximum_deux(a, b):\n    return a if a >= b else b\n```",
+  "reponse": "La fonction compare les deux valeurs et renvoie la plus grande. Si elles sont ?gales, elle renvoie a."
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait est_dans_intervalle(valeur, minimum, maximum).\n```python\ndef est_dans_intervalle(valeur, minimum, maximum):\n    return minimum <= valeur <= maximum\n```",
+  "reponse": "La fonction v?rifie si valeur est comprise entre minimum et maximum, bornes incluses, puis renvoie le r?sultat sous forme bool?enne."
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait elements_pairs(nombres).\n```python\ndef elements_pairs(nombres):\n    return [n for n in nombres if n % 2 == 0]\n```",
+  "reponse": "La fonction cr?e une nouvelle liste contenant les nombres pairs de la liste re?ue, dans le m?me ordre."
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait nom_complet(prenom, nom).\n```python\ndef nom_complet(prenom, nom):\n    return f\"{prenom.strip()} {nom.strip()}\".strip()\n```",
+  "reponse": "La fonction retire les espaces autour du pr?nom et du nom, puis les assemble avec une espace. Le strip final retire aussi l?espace restant si l?un des champs est vide."
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait compter_lettre(texte, lettre).\n```python\ndef compter_lettre(texte, lettre):\n    return texte.count(lettre)\n```",
+  "reponse": "La fonction renvoie le nombre d?occurrences exactes de lettre dans texte. La recherche respecte les majuscules et les minuscules."
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait valeur_par_defaut(dictionnaire, cle, defaut).\n```python\ndef valeur_par_defaut(dictionnaire, cle, defaut):\n    return dictionnaire.get(cle, defaut)\n```",
+  "reponse": "La fonction cherche cle dans le dictionnaire et renvoie sa valeur. Si la cl? est absente, elle renvoie defaut."
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait produit_liste(nombres).\n```python\ndef produit_liste(nombres):\n    resultat = 1\n    for nombre in nombres:\n        resultat *= nombre\n    return resultat\n```",
+  "reponse": "La fonction multiplie entre eux les nombres de la liste. Pour une liste vide, elle renvoie 1, qui est l??l?ment neutre de la multiplication."
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait premiers(elements, limite).\n```python\ndef premiers(elements, limite):\n    return elements[:limite]\n```",
+  "reponse": "La fonction renvoie une nouvelle liste contenant les ?l?ments depuis le d?but jusqu?? l?indice limite exclu."
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait est_commence_par(texte, prefixe).\n```python\ndef est_commence_par(texte, prefixe):\n    return texte.startswith(prefixe)\n```",
+  "reponse": "La fonction renvoie True si le texte commence par le pr?fixe donn?, et False sinon."
+ },
+ {
+  "type": "explication",
+  "demande": "Explique ce que fait compter_mots_non_vides(texte).\n```python\ndef compter_mots_non_vides(texte):\n    return len(texte.split())\n```",
+  "reponse": "La fonction s?pare le texte sur les espaces et compte les mots obtenus. Les espaces r?p?t?s et les espaces aux extr?mit?s ne cr?ent pas de mots suppl?mentaires."
  }
 ]
