@@ -9,10 +9,7 @@ FIN = 151645
 LEXIQUE = set(Path(__file__).with_name("lexique.txt").read_text(encoding="utf-8").split())
 
 
-def lire_reglages():
-    dossier = Path(__file__).resolve().parent
-    chemin = dossier.parent / "seance7" / "reglages.json"
-
+def lire_reglages(chemin="../seance7/reglages.json"):
     with open(chemin, encoding="utf-8") as fichier:
         return json.load(fichier)
 
@@ -41,4 +38,4 @@ def demander(texte, type_demande, modele="moteur", n_max=400):
     with urllib.request.urlopen(requete, timeout=300) as reponse:#300 secondes de timeout pour attendre si la requete prend du temps c'est a dire 5 minutes
         choix = json.loads(reponse.read())["choices"][0] #une fois que la reponse est recu je le transforme en json et je prend le premier element de la liste des choix
     return choix["message"]["content"], choix["finish_reason"] == "stop" #c'est a dire que si le moteur a fini de generer la reponse ou pas, si c'est stop c'est qu'il a fini sinon c'est qu'il a ete interrompu par le temps ou autre chose
-    
+    #si il a sarreter lui meme alors nmax ou 
