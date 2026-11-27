@@ -17,7 +17,7 @@ moteur = get_peft_model(moteur, LoraConfig(r=8, target_modules=["q_proj", "v_pro
 entraines = [p for p in moteur.parameters() if p.requires_grad]
 for p in entraines:
     p.data = p.data.float()
-print("paramÃ¨tres entraÃ®nÃ©s", sum(p.numel() for p in entraines))
+print("paramètres entraînés", sum(p.numel() for p in entraines))
 
 
 def exemple(paire):
@@ -30,24 +30,21 @@ def exemple(paire):
 
 
 paires = json.load(open("paires.json", encoding="utf-8"))
-adam = torch.optim.AdamW(entraines, lr=1e-4)
-BATCH = 4
+adam = torch.optim.AdamW(entraines, lr=2e-4)
 random.seed(0)
-for epoque in range(3):
+for epoque in range(2):
     random.shuffle(paires)
     pertes = []
-    for debut in range(0, len(paires), BATCH):
-        groupe = paires[debut:debut + BATCH]
-        adam.zero_grad()
-        for paire in groupe:
-            ids, cibles = exemple(paire)
-            perte = moteur(input_ids=ids, labels=cibles).loss
-            (perte / len(groupe)).backward()
-            pertes.append(perte.item())
+    for paire in paires:
+        ids, cibles = exemple(paire)
+        perte = moteur(input_ids=ids, labels=cibles).loss
+        perte.backward()
         adam.step()
-    print(f"?poque {epoque + 1}, perte moyenne {sum(pertes) / len(pertes):.3f}")
+        adam.zero_grad()
+        pertes.append(perte.item())
+    print(f"époque {epoque + 1}, perte moyenne {sum(pertes) / len(pertes):.3f}")
 
 for p in entraines:
     p.data = p.data.to(torch.float16)
 moteur.save_pretrained(SORTIE)
-print("adaptateur enregistrÃ© dans le dossier", SORTIE)
+print("adaptateur enregistré dans le dossier", SORTIE)
